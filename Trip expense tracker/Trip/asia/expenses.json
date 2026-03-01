@@ -1,0 +1,23 @@
+[
+    {
+        "name": "tiffin",
+        "amount": 600.0,
+        "paid_by": "ash",
+        "split": {
+            "ash": 200.0,
+            "chen": 200.0,
+            "demon": 200.0
+        }
+    },
+    {
+        "name": "dinner",
+        "amount": 1000.0,
+        "paid_by": "ash",
+        "split": {
+            "ash": 250.0,
+            "chen": 250.0,
+            "demon": 250.0,
+            "asher": 250.0
+        }
+    }
+]
