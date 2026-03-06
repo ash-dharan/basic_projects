@@ -6,7 +6,10 @@ class TodoList():
         self.tasks_list = []
     
     def add_task(self,task):
-        self.tasks_list.append(task)
+        self.tasks_list.append({
+            "task": task,
+            "status": False,
+            })
 
     def task_done(self,index):
         (self.tasks_list[index])["status"] = True
