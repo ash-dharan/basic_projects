@@ -1,19 +1,22 @@
 "TO-DO List app"
 
-class To_do_list():
+class TodoList():
 
     def __init__(self):
-
-        self.list = {}
+        self.tasks_list = []
     
     def add_task(self,task):
-
-        self.list.append(task)
+        self.tasks_list.append(task)
 
     def task_done(self,index):
-
-        self.list[index] = ''.join(char +'\u0336' for char in self.list[index])
+        (self.tasks_list[index])["status"] = True
 
     def remove_task(self,index):
-
-        self.list.pop(index)
+        self.tasks.pop(index)
+    
+    def load_list(self,file_list):
+        self.tasks_list.extend(file_list)
+    
+    def __str__(self):
+        for i in range(self.tasks_list):
+            print(i,self.tasks_list[i])       
