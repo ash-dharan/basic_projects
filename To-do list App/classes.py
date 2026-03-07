@@ -20,6 +20,6 @@ class TodoList():
     def load_list(self,file_list):
         self.tasks_list.extend(file_list)
     
-    def __str__(self):
-        for i in range(self.tasks_list):
-            print(i,self.tasks_list[i])       
+    def __repr__(self):
+        for i in range(len(self.tasks_list)):
+            return f"{[(i,self.tasks_list[i]) for i in range(len(self.tasks_list))]}"     

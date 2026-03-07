@@ -7,60 +7,58 @@ from pathlib import Path
 
 def save_list(file_name,instance):
 
-    file_path = Path(f"./{file_name}")
+    file_path = Path(f"./lists/{file_name}.json")
 
     with file_path.open() as f:
         json.dump(instance,f)
 
 
 def load_file(file_name):
-    file_path = Path(f"./{file_name}")
+    file_path = Path(f"./lists/{file_name}.json")
 
     with file_path.open() as f:
         temp = json.load(f)
     
     return temp
 
-# def intialize_list(file_name):
-#     temp = load_file(file_name)
-#     result = TodoList()
-
-#     for element in temp:
-#         result.add_task(element)
-    
-#     return result
-
-
-
 while True:
 
     state = input("Do you want use an existing list or create a new list?(enter new/exist):").lower()
 
     if state == "new":
+        file_name = input("Enter the name for the list: ")
+        Path.touch(f"./lists/{file_name}.json")
         break
 
     elif state == "exist":
-        break
+        print(Path.iterdir("./lists"))
+        file_name = input("Choose which list to load: ")
+
+        if file_name in Path.iterdir("./lists"):
+            break
+        else:
+            print(f"there is no list with name {file_name}")
+
 
 instance = TodoList()
-instance.load_list(load_file())
+instance.load_list(load_file(file_name))
         
 
 while True:
-
+    print()
     print("========options========")
-    print("1 for add new task")
-    print("2 for change the status of task")
-    print("3 for remove a task")
-    print("4 view the list")
+    print("1 to add new task")
+    print("2 to change the status of task")
+    print("3 to remove a task")
+    print("4 to view the list")
     print("5 to save changes")
     print("6 to exit")
+    print()
 
     option = input("Enter an option: ")
-
     
     if option == "1":
-        new_task = input("Enter the task:").lower()
+        new_task = input("Enter the task: ").lower()
         instance.add_task(new_task)
 
     elif option == "2":
@@ -75,7 +73,7 @@ while True:
         print(instance)
 
     elif option == "5":
-        save_list()
+        save_list(file_name,instance)
     
     elif option == "6":
         print("Goodbye, Thank you for using the program.")
