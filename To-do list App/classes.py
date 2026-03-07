@@ -15,7 +15,7 @@ class TodoList():
         (self.tasks_list[index])["status"] = True
 
     def remove_task(self,index):
-        self.tasks.pop(index)
+        self.tasks_list.pop(index)
     
     def load_list(self,file_list):
         self.tasks_list.extend(file_list)
