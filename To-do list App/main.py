@@ -9,15 +9,18 @@ def save_list(file_name,instance):
 
     file_path = Path(f"./lists/{file_name}.json")
 
-    with file_path.open() as f:
-        json.dump(instance,f)
+    with file_path.open("w") as f:
+        json.dump(instance.tasks_list,f)
 
 
 def load_file(file_name):
     file_path = Path(f"./lists/{file_name}.json")
 
     with file_path.open() as f:
-        temp = json.load(f)
+        try:
+            temp = json.load(f)
+        except:
+            temp =[]
     
     return temp
 
@@ -27,14 +30,15 @@ while True:
 
     if state == "new":
         file_name = input("Enter the name for the list: ")
-        Path.touch(f"./lists/{file_name}.json")
+        Path(f"./lists/{file_name}.json").touch()
         break
 
     elif state == "exist":
-        print(Path.iterdir("./lists"))
+        print(list(Path("./lists").iterdir()))
         file_name = input("Choose which list to load: ")
+        files = [f.stem for f in Path("./lists").iterdir()]
 
-        if file_name in Path.iterdir("./lists"):
+        if file_name in files:
             break
         else:
             print(f"there is no list with name {file_name}")
@@ -63,11 +67,17 @@ while True:
 
     elif option == "2":
         task_index = int(input("Enter the index of the task: "))
-        instance.task_done(task_index)
+        try:
+            instance.task_done(task_index)
+        except IndexError:
+            print("Invalid Index")
 
     elif option == "3":
         remove_index = int(input("Enter the index of the task you to remove: "))
-        instance.remove_task(remove_index)
+        try:
+            instance.remove_task(remove_index)
+        except IndexError:
+            print("Invalid Index")
 
     elif option == "4":
         print(instance)
