@@ -22,4 +22,10 @@ class TodoList():
     
     def __repr__(self):
         for i in range(len(self.tasks_list)):
-            return f"{[(i,self.tasks_list[i]) for i in range(len(self.tasks_list))]}"     
+            result = "======task-list=======\n"
+            for task in self.tasks_list:
+                if task["status"] :
+                    result += f"["+("\u2713")+"]" + f"{task[task]})" + "\n"
+                else:
+                    result += f"["+("\u2713")+"]" + f"{task[task]}"+'\n'
+            return result
