@@ -7,16 +7,16 @@ from pathlib import Path
 
 def save_list(file_name,instance):
 
-    file_path = Path(f"./lists/{file_name}.json")
+    file_path = Path(f"./To-do list/{file_name}.json")
 
     with file_path.open("w") as f:
         json.dump(instance.tasks_list,f)
 
 
 def load_file(file_name):
-    file_path = Path(f"./lists/{file_name}.json")
+    file_path = Path(f"./To-do list/{file_name}.json")
 
-    with file_path.open() as f:
+    with file_path.open("r") as f:
         try:
             temp = json.load(f)
         except:
@@ -27,27 +27,27 @@ def load_file(file_name):
 while True:
 
     state = input("Do you want use an existing list or create a new list?(enter new/exist):").lower()
+    instance = TodoList()
 
     if state == "new":
-        file_name = input("Enter the name for the list: ")
-        Path(f"./lists/{file_name}.json").touch()
+        file_name = input("Enter the name for the list: ").lower()
+        Path("./To-do list").mkdir(exist_ok=True)
+        Path(f"./To-do list/{file_name}.json").touch()
         break
 
     elif state == "exist":
-        print(list(Path("./lists").iterdir()))
-        file_name = input("Choose which list to load: ")
-        files = [f.stem for f in Path("./lists").iterdir()]
-
+        Path("./To-do list").mkdir(exist_ok=True)
+        files = [f.stem for f in Path("./To-do list").iterdir()]
+        print(files)
+        file_name = input("Choose which list to load: ").lower()
+        
         if file_name in files:
+            instance.load_list(load_file(file_name))
             break
         else:
             print(f"there is no list with name {file_name}")
 
-
-instance = TodoList()
-instance.load_list(load_file(file_name))
         
-
 while True:
     print()
     print("========options========")
