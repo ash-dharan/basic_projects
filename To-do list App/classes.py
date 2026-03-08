@@ -20,12 +20,12 @@ class TodoList():
     def load_list(self,file_list):
         self.tasks_list.extend(file_list)
     
-    def __repr__(self):
+    def __str__(self):
         for i in range(len(self.tasks_list)):
             result = "======task-list=======\n"
             for task in self.tasks_list:
                 if task["status"] :
-                    result += f"["+("\u2713")+"]" + f"{task[task]})" + "\n"
+                    result += f" {i} ["+("\u2713")+"]" + f" {task["task"]}" + "\n"
                 else:
-                    result += f"["+("\u2713")+"]" + f"{task[task]}"+'\n'
-            return result
+                    result += f" {i} [ ]" + f" {task["task"]}"+'\n'
+        return f"{result}"
