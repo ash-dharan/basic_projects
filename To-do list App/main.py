@@ -26,7 +26,7 @@ def load_file(file_name):
 
 while True:
 
-    state = input("Do you want use an existing list or create a new list?(enter new/exist):").lower()
+    state = input("Do you want use an existing or new list?(enter new/exist):").lower()
     instance = TodoList()
 
     if state == "new":
@@ -66,6 +66,7 @@ while True:
         instance.add_task(new_task)
 
     elif option == "2":
+        print(instance)
         task_index = int(input("Enter the index of the task: "))
         try:
             instance.task_done(task_index)
@@ -73,6 +74,7 @@ while True:
             print("Invalid Index")
 
     elif option == "3":
+        print(instance)
         remove_index = int(input("Enter the index of the task you to remove: "))
         try:
             instance.remove_task(remove_index)
