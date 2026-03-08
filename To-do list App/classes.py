@@ -21,11 +21,12 @@ class TodoList():
         self.tasks_list.extend(file_list)
     
     def __str__(self):
+        result = "=======task-list=======\n\n"
         for i in range(len(self.tasks_list)):
-            result = "======task-list=======\n"
-            for task in self.tasks_list:
-                if task["status"] :
-                    result += f" {i} ["+("\u2713")+"]" + f" {task["task"]}" + "\n"
-                else:
-                    result += f" {i} [ ]" + f" {task["task"]}"+'\n'
+            task = self.tasks_list[i]
+            if task["status"] :
+                result += f" {i} ["+("\u2713")+"]" + f" {task["task"]}" + "\n"
+            else:
+                result += f" {i} [ ]" + f" {task["task"]}"+'\n'
+
         return f"{result}"
