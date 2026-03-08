@@ -88,5 +88,15 @@ while True:
         save_list(file_name,instance)
     
     elif option == "6":
-        print("Goodbye, Thank you for using the program.")
-        break
+        exit = input("Do you save before exiting(y/n): ")
+        if exit == "y":
+            save_list(file_name,instance)
+            print("Goodbye, Thank you for using the program.")
+            break
+
+        elif exit == "n":
+            print("Goodbye, Thank you for using the program.")
+            break
+
+        else:
+            print("Please enter either y or n")
